@@ -1,0 +1,145 @@
+/* Import Google Fonts for a clean look */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+/* General body styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #F4F4F9; /* Light grayish-blue */
+    color: #333333; /* Dark gray for readability */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    align-items: center;
+}
+
+/* Header styling */
+header {
+    background-color: #A8E6CF; /* Pastel Green */
+    color: #333333;
+    padding: 20px;
+    text-align: center;
+    /* Minimalist shadow */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    letter-spacing: 1.2px;
+    font-weight: 500;
+}
+
+/* Container for the main content */
+.container {
+    flex: 1;
+    margin: 40px auto;
+    max-width: 800px; /* Adjusted for better readability */
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    /* Subtle shadow for depth */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Dropdown and Button styling */
+select, button {
+    padding: 10px 15px;
+    font-size: 1rem;
+    margin-right: 10px;
+    border: 1px solid #A8E6CF; /* Light border matching primary color */
+    border-radius: 6px;
+    outline: none;
+    transition: background-color 0.3s, border-color 0.3s;
+    background-color: #F9FFF9; /* Very light green background */
+    color: #333333;
+}
+
+/* Select dropdown */
+select {
+    background-color: #F9FFF9;
+    color: #333333;
+}
+
+select:hover {
+    background-color: #ebffeb; /* Slightly darker on hover */
+    border-color: #A8E6CF;
+}
+
+/* Button styling */
+button {
+    background-color: #6ad3ad; /* Pastel Pink */
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s;
+    border: none; /* Remove default border */
+}
+
+button:hover {
+    background-color: #459472; /* Darker pink on hover */
+    transform: translateY(-2px); /* Subtle lift effect */
+}
+
+button:active {
+    transform: translateY(0); /* Reset on click */
+}
+
+/* Styling for the plot area */
+.plot-area {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+canvas {
+    border: 2px solid #A8E6CF; /* Pastel Green border */
+    border-radius: 8px;
+    max-width: 600px;
+    max-height: 600px;
+    width: 100%;
+    height: auto;
+}
+
+/* Footer styling */
+footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #A8E6CF; /* Pastel Green */
+    color: #333333;
+    /* Minimalist shadow */
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Remove margin for paragraph in footer */
+footer p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+/* Responsive layout for mobile */
+@media only screen and (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    .container {
+        padding: 15px;
+        margin: 20px auto;
+    }
+
+    button, select {
+        margin-bottom: 15px;
+        width: 100%; /* Full width on mobile for better usability */
+    }
+
+    .plot-area {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    canvas {
+        max-width: 100%;
+        height: auto;
+    }
+}

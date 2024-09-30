@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KMeans Clustering Visualization</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <!-- Specify Chart.js version for compatibility -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0"></script>
+</head>
+<body>
+    <header>
+        <h1>KMeans Clustering Visualization</h1>
+    </header>
+    <div class="container">
+        <div class="controls">
+            <label for="kClusters">Number of Clusters (k):</label>
+            <input type="number" id="kClusters" min="1" max="10" value="3">
+            <select id="initMethod">
+                <option value="random">Random</option>
+                <option value="farthest_first">Farthest First</option>
+                <option value="kmeans++">KMeans++</option>
+                <option value="manual">Manual</option>
+            </select>
+            <button id="generateData">Generate New Data</button>
+            <button id="step">Step</button>
+            <button id="converge">Converge</button>
+            <button id="reset">Reset</button>
+        </div>
+        <div id="status"></div>
+        <div class="plot-area">
+            <canvas id="chart" width="600" height="600"></canvas>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Martin Herguedas. All rights reserved.</p>
+    </footer>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
