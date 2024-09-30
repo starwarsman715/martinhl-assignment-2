@@ -31,7 +31,7 @@ jobs:
       run: |
         make run &                   # Start the server in the background
         sleep 10                     # Wait for 10 seconds to allow the server to start
-        curl -sSf http://localhost:5000/ > /dev/null  # Health check: Replace with your server's URL and port
+        curl -sSf http://localhost:3000/ > /dev/null  # Health check: Replace with your server's URL and port
       # Explanation:
       # - `make run &` starts the server in the background.
       # - `sleep 10` gives the server time to initialize.
@@ -40,7 +40,7 @@ jobs:
     # 5. Optional: Add a step to ensure the server is running correctly
     - name: Verify server is running
       run: |
-        RESPONSE=$(curl --write-out "%{http_code}" --silent --output /dev/null http://localhost:5000/)
+        RESPONSE=$(curl --write-out "%{http_code}" --silent --output /dev/null http://localhost:3000/)
         if [ $RESPONSE -ne 200 ]; then
           echo "Server failed to start correctly."
           exit 1
