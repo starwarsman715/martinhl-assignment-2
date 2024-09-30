@@ -1,0 +1,56 @@
+name: Python Application CI
+
+# Trigger the workflow on push and pull request events to the main branch
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Checkout the repository
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    # 2. Set up Python environment
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'  # Specify the Python version your project uses
+
+    # 3. Install dependencies
+    - name: Install dependencies
+      run: make install
+
+    # 4. Run the application
+    - name: Run the application
+      run: |
+        make run &                   # Start the server in the background
+        sleep 10                     # Wait for 10 seconds to allow the server to start
+        curl -sSf http://localhost:5000/ > /dev/null  # Health check: Replace with your server's URL and port
+      # Explanation:
+      # - `make run &` starts the server in the background.
+      # - `sleep 10` gives the server time to initialize.
+      # - `curl` checks if the server is responding. Adjust the URL and port as needed.
+
+    # 5. Optional: Add a step to ensure the server is running correctly
+    - name: Verify server is running
+      run: |
+        RESPONSE=$(curl --write-out "%{http_code}" --silent --output /dev/null http://localhost:5000/)
+        if [ $RESPONSE -ne 200 ]; then
+          echo "Server failed to start correctly."
+          exit 1
+        fi
+      # Explanation:
+      # - This step sends a GET request to the server.
+      # - If the response code is not 200, it exits with an error.
+
+    # 6. Optional: Stop the server after verification
+    - name: Stop the application
+      if: always()                   # Ensure this step runs even if previous steps fail
+      run: |
+        pkill -f "make run"           # Terminate the server process
